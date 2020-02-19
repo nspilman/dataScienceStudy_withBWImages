@@ -1,0 +1,14 @@
+from PIL import Image
+import numpy as np
+from methods.methods import *
+
+pic = getImageFromUrl('https://lh3.googleusercontent.com/zzGiV6gJlQklyft9NwyLOOeBfkkeB9mBK1buoz6GDRPgiPKjG-zaMSEU_v724HN8Uuyy9vOuYzU4Mb13hVWKDuO_UQX4NoggPFAvi6IkDph9ZijyNhqvij06YOfZVmigU2TeYp8B1ZdtPGigUcT9Xjd67ildpe0WPT5xtitAk37hInUCkQBuXV8093KCoa1IVX8peTvSMH0wX5I0BOa5QkOUWbUjdwD5UdJeCFolUGhXTgNgu23qGnDcVtQNNTJs3DOV6sjjBqyWXI2ZP4D5tyM-2ePJhs-esHui-LITK0YOBBFPvOYViBaSo0qCwj6BJkwimcMTE_zxiYVDlI3NKMX26GiqqYJ9sZaiYhRZykv08hf4JDR88-Mal9OydTQfb05ept2sbOzPgRRRM7uHnBiu3_QBvTC4fxodO-jbOUtDjtbR8A4fwDF43JATzE15DQp8o9RqUQSKeOPPU9ZMaXG_R2Tra7tl2YxjgcDS3bNba_8uM5_1NbsdeMsz33OdP3B1VPzrAxi2a-gJXdAHQ4pD8MtPD_3xRIgWFeTGoTFRQvs-5dsGDSsiB8ZBdE4L7L8SymR7MhvALM5hh85w6t4Ps2rrnRp0dgJk8OiLpVyWQMKJRlIdSk_etO_tENkAPbYfwSyvN21_vgNtO-G92FaLHj0BqYdtn9yCsuWxwaMuIS_N6q0KTFLf=w1620-h1080-no')
+pic = pic.resize(int(.4 * value) for value in pic.size)
+pic_array = np.array(pic)
+
+playround_image = createNewImageWithProgramaticPixelPerfectControl(pic_array,hueTest)
+pic.show()
+playround_image.show()
+
+
+
