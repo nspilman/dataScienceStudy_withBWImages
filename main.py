@@ -1,14 +1,40 @@
 from PIL import Image
 import numpy as np
 from methods.methods import *
+from colorModificationDetails import *
 
-pic = getImageFromUrl('https://lh3.googleusercontent.com/zzGiV6gJlQklyft9NwyLOOeBfkkeB9mBK1buoz6GDRPgiPKjG-zaMSEU_v724HN8Uuyy9vOuYzU4Mb13hVWKDuO_UQX4NoggPFAvi6IkDph9ZijyNhqvij06YOfZVmigU2TeYp8B1ZdtPGigUcT9Xjd67ildpe0WPT5xtitAk37hInUCkQBuXV8093KCoa1IVX8peTvSMH0wX5I0BOa5QkOUWbUjdwD5UdJeCFolUGhXTgNgu23qGnDcVtQNNTJs3DOV6sjjBqyWXI2ZP4D5tyM-2ePJhs-esHui-LITK0YOBBFPvOYViBaSo0qCwj6BJkwimcMTE_zxiYVDlI3NKMX26GiqqYJ9sZaiYhRZykv08hf4JDR88-Mal9OydTQfb05ept2sbOzPgRRRM7uHnBiu3_QBvTC4fxodO-jbOUtDjtbR8A4fwDF43JATzE15DQp8o9RqUQSKeOPPU9ZMaXG_R2Tra7tl2YxjgcDS3bNba_8uM5_1NbsdeMsz33OdP3B1VPzrAxi2a-gJXdAHQ4pD8MtPD_3xRIgWFeTGoTFRQvs-5dsGDSsiB8ZBdE4L7L8SymR7MhvALM5hh85w6t4Ps2rrnRp0dgJk8OiLpVyWQMKJRlIdSk_etO_tENkAPbYfwSyvN21_vgNtO-G92FaLHj0BqYdtn9yCsuWxwaMuIS_N6q0KTFLf=w1620-h1080-no')
-pic = pic.resize(int(.4 * value) for value in pic.size)
+igImage = "https://images.unsplash.com/photo-1582721478779-0ae163c05a60?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1942&q=80"
+
+# pic = Image.open("images/stopRequested.jpg")
+pic = getImageFromUrl(igImage)
+# pic = generateColorBlock(100,100)
+# pic.show()
+
+# pic.quantize(255)
+ 
+pic = pic.resize(int(.3 * value) for value in pic.size)
 pic_array = np.array(pic)
 
-playround_image = createNewImageWithProgramaticPixelPerfectControl(pic_array,hueTest)
-pic.show()
+# green = [125,164,50]
+# orange = [211,154,53]
+
+volcanoRed = [220,138,84]
+
+modificationDetail = colorModification([84,138,220],volcanoRed,20)
+
+# orangeToGreen = colorModification(green,orange)
+
+playround_image = generateNewImage(pic_array,lowPassLight,20)
+playround_image = generateNewImage(playround_image,modifyHue,modificationDetail)
+
 playround_image.show()
+# playround_image = generateNewImage(pic_array,lowPassLight,350)
+# playround_image = generateNewImage(np.array(playround_image),modifyHue,orangeToGreen)
+# playround_image.show()
+# gifArray = []
+# for i in range(10):
+#     randomColor = [random.randint(0,255),random.randint(0,255),random.randint(0,255)]
+#     colorDetails = colorModification(randomColor,orange)
+#     gifArray.append(generateNewImage(pic_array,modifyHue,colorDetails))
 
-
-
+# generateGif(gifArray,"stopRequested")
