@@ -57,6 +57,39 @@ def modifyHue(pixel,details):
     else:
         return pixel
 
+def shiftRed(pixel,details = None):
+    if details == None:
+        newPixel = sorted(pixel, reverse=True)
+        return newPixel
+    totalLight = sum(value for value in pixel)
+    evalHue = getHue(details.evalColor)
+    evalThreshold = details.evalThreshold
+    difference = pixelDistance(getHue(pixel),evalHue)
+    if difference < evalThreshold:
+        newPixel = sorted(pixel, reverse=True)
+        return newPixel
+    else:
+        return pixel
+
+def shiftBlue(pixel,details = None):
+    if details == None:
+        newPixel = sorted(pixel)
+        return newPixel
+    totalLight = sum(value for value in pixel)
+    evalHue = getHue(details.evalColor)
+    evalThreshold = details.evalThreshold
+    difference = pixelDistance(getHue(pixel),evalHue)
+    if difference < evalThreshold:
+        newPixel = sorted(pixel)
+        return newPixel
+    else:
+        return pixel
+               
+
+
+
+
+
 def pixelDistance(pixelA,pixelB):
     return math.sqrt(sum((valueA - valueB)**2 for valueA,valueB in zip(pixelA,pixelB)))
 
@@ -78,7 +111,6 @@ def resizeImage(picture,resizePercentage):
     return picture.resize(int((resizePercentage / 100) * value) for value in picture.size)
 
 def generateNewImage(imageArray,pixelAugmentationFunction, settings = None):
-    print(type(imageArray))
     if type(imageArray) == Image.Image:
         imageArray = np.array(imageArray)
     if settings != None:
